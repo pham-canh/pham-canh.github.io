@@ -1,0 +1,78 @@
+{
+  "brand": "Harbor Hotel Assistant",
+  "networks": [
+    {
+      "name": "harbor_hotel",
+      "front_man": "harbor_hotel_assistant",
+      "hocon": "./harbor_hotel.network.json",
+      "description": "Compare Harbor Hotel's rooms and policies, and start a room request on its own origin.",
+      "tags": [
+        "agentified-website",
+        "open-agentic-web",
+        "travel"
+      ],
+      "sample_queries": [
+        "What rooms and rates do you have?",
+        "Is breakfast included?",
+        "How does the airport shuttle work?",
+        "Can you check live availability?"
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.otari.ai/api/v1",
+    "mock": false,
+    "byok_router": "https://api.otari.ai/api/v1"
+  },
+  "allowed_peers": [],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "Local agents and page-local actions only."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "harbor_hotel",
+    "front_man": "harbor_hotel_assistant",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#8a4b2a"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "harbor_hotel",
+        "front_man": "harbor_hotel_assistant",
+        "aliases": [
+          "harbor_hotel",
+          "harbor_hotel_assistant"
+        ],
+        "url": "harbor_hotel"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "bridge": "./bridge/action-bridge.html",
+    "agentTools": [
+      "get_hotel_state",
+      "request_room"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "harbor_hotel",
+      "front_man": "harbor_hotel_assistant",
+      "aliases": [
+        "harbor_hotel",
+        "harbor_hotel_assistant"
+      ],
+      "url": "harbor_hotel"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}

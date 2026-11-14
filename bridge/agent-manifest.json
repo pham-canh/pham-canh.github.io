@@ -1,0 +1,10 @@
+{
+  "networks": [
+    {
+      "name": "harbor_hotel"
+    }
+  ],
+  "actions": {
+    "version": 1
+  }
+}
